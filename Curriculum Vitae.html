@@ -1,47 +1,490 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Vitae</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curriculum Vitae | Abubakar Ashraf Muhammad</title>
+  <meta name="description" content="Professional CV for Abubakar Ashraf Muhammad, Junior Frontend Developer, Kano Nigeria." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Variables ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0f1c2e;
+      --navy-mid:#1a2e46;
+      --cream:   #f8f5ef;
+      --warm-off:#ede9e1;
+      --gold:    #c9a84c;
+      --ink:     #1e2533;
+      --muted:   #6b7280;
+      --rule:    #d4cec4;
+
+      --serif:  'Playfair Display', Georgia, serif;
+      --sans:   'DM Sans', sans-serif;
+      --mono:   'DM Mono', monospace;
+    }
+
+    /* ── Page ──────────────────────────────────────────────── */
+    body {
+      background: var(--warm-off);
+      font-family: var(--sans);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 3rem 1.5rem;
+    }
+
+    /* ── Card ──────────────────────────────────────────────── */
+    .cv {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      max-width: 980px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(15,28,46,.22), 0 4px 12px rgba(15,28,46,.1);
+      border-radius: 4px;
+      overflow: hidden;
+      animation: rise .6s ease both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Sidebar ───────────────────────────────────────────── */
+    .sidebar {
+      background: var(--navy);
+      color: #d6dde8;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
+    }
+
+    .sidebar-name {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: -.3px;
+    }
+
+    .sidebar-title {
+      font-family: var(--mono);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: .5rem;
+    }
+
+    .sidebar-divider {
+      width: 36px;
+      height: 2px;
+      background: var(--gold);
+      margin-top: .8rem;
+    }
+
+    /* sidebar section label */
+    .s-label {
+      font-family: var(--mono);
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .8rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+
+    .contact-list li {
+      font-size: .82rem;
+      line-height: 1.4;
+      color: #b8c4d0;
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+    }
+
+    .contact-list li::before {
+      content: '›';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: .05em;
+    }
+
+    .contact-list a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s, color .2s;
+    }
+
+    .contact-list a:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    /* Skills */
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+    }
+
+    .chip {
+      font-family: var(--mono);
+      font-size: .68rem;
+      padding: .28rem .65rem;
+      border-radius: 2px;
+      border: 1px solid rgba(201,168,76,.35);
+      color: #b8c4d0;
+      letter-spacing: .04em;
+      transition: background .2s, color .2s;
+    }
+
+    .chip:hover {
+      background: rgba(201,168,76,.12);
+      color: var(--gold);
+    }
+
+    /* Soft skills */
+    .soft-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .soft-list li {
+      font-size: .8rem;
+      color: #b8c4d0;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .soft-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: .7rem;
+    }
+
+    /* ── Main ──────────────────────────────────────────────── */
+    .main {
+      background: var(--cream);
+      padding: 3rem 2.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
+    }
+
+    /* section */
+    .cv-section {}
+
+    .cv-section-header {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cv-section-header h2 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: .01em;
+      white-space: nowrap;
+    }
+
+    .header-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* Summary */
+    .summary p {
+      font-size: .875rem;
+      line-height: 1.75;
+      color: var(--ink);
+      max-width: 58ch;
+    }
+
+    /* Entry (education / experience) */
+    .entry {
+      margin-bottom: 1.4rem;
+    }
+
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: .3rem;
+    }
+
+    .entry-role {
+      font-family: var(--serif);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .entry-date {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--muted);
+      letter-spacing: .05em;
+    }
+
+    .entry-org {
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--gold);
+      margin-top: .18rem;
+      margin-bottom: .5rem;
+    }
+
+    .entry-desc {
+      font-size: .83rem;
+      line-height: 1.65;
+      color: #374151;
+      max-width: 58ch;
+    }
+
+    .entry-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+      margin-top: .4rem;
+    }
+
+    .entry-list li {
+      font-size: .83rem;
+      color: #374151;
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .entry-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: .6rem;
+      top: .28em;
+    }
+
+    /* GPA badge */
+    .badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: .65rem;
+      padding: .2rem .55rem;
+      background: var(--navy);
+      color: var(--gold);
+      border-radius: 2px;
+      margin-left: .5rem;
+      vertical-align: middle;
+      letter-spacing: .06em;
+    }
+
+    /* Online */
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .85rem;
+    }
+
+    .link-item a {
+      color: var(--navy-mid);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid var(--rule);
+      transition: color .2s, border-color .2s;
+    }
+
+    .link-item a:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .link-label {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      body { padding: 1rem .5rem; }
+      .cv { grid-template-columns: 1fr; }
+      .sidebar { padding: 2.2rem 1.6rem; }
+      .main { padding: 2rem 1.6rem; }
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .cv { box-shadow: none; }
+    }
+  </style>
 </head>
 <body>
-    <hr>
-    <h2>Abubakar Ashraf Muhammad</h2>
-    <br>
 
-    <h3>Junior Frontend Developer</h3>
+<article class="cv">
 
-        123 Mariri Street, Kano, Nigeria
-        Kano City, Kano State
-        <a href="mailto:muhashralph@gmail.com">muhashralph@gmail.com</a>
+  <!-- ══════════════ SIDEBAR ══════════════ -->
+  <aside class="sidebar">
 
-    
-    <br>
-    <h4>Skills</h4>
-    HTML,CSS, JavaScript, React, Git, GitHub, Figma, Adobe Photoshop, Adobe Illustrator, Adobe XD, Microsoft Office Suite (Word, Excel, PowerPoint), Communication Skills, Problem-Solving Skills, Time Management, Teamwork, Adaptability, Creativity, Attention to Detail, Critical
-    <br>
+    <div>
+      <p class="sidebar-name">Abubakar<br>Ashraf<br>Muhammad</p>
+      <p class="sidebar-title">Junior Frontend Developer</p>
+      <div class="sidebar-divider"></div>
+    </div>
 
-    <h4>Education</h4>
-    
-        B.Sc. Computer Engineering, Bayero University Kano,
-        2022-2027, 
-        CGPA: 3.5/4.0
-        Exciting times ahead as I embark on my journey in Computer Engineering at Bayero University Kano. With a strong passion for technology and a drive to excel, I am eager to dive into the world of computer engineering and make the most of this educational opportunity. I am committed to learning, growing, and contributing to the field of computer engineering throughout my academic journey and beyond.
-    <br>
-    <h4>Experience</h4>
-    
-    Achepap Center of excellence, Kano, Nigeria - IT support
-    <p>From: 2026 - Present</p>
-    <list>
-        <li>Provide technical support to users</li>
-        <li>Maintain and update computer systems</li>
-        <li>Assist in the installation and configuration of software</li>
-    </list>
-<br>
-    <h4> Across the internet</h4>
-    <a href="https://github.com/Moashralphy"> My profile (Moashralphy)</a>
+    <section>
+      <p class="s-label">Contact</p>
+      <ul class="contact-list">
+        <li>123 Mariri Street,<br>Kano City, Kano State,<br>Nigeria</li>
+        <li><a href="mailto:muhashralph@gmail.com">muhashralph@gmail.com</a></li>
+      </ul>
+    </section>
 
-    
+    <section>
+      <p class="s-label">Technical Skills</p>
+      <div class="skill-chips">
+        <span class="chip">HTML</span>
+        <span class="chip">CSS</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">React</span>
+        <span class="chip">Git</span>
+        <span class="chip">GitHub</span>
+        <span class="chip">Figma</span>
+        <span class="chip">Photoshop</span>
+        <span class="chip">Illustrator</span>
+        <span class="chip">Adobe XD</span>
+        <span class="chip">MS Office</span>
+      </div>
+    </section>
+
+    <section>
+      <p class="s-label">Soft Skills</p>
+      <ul class="soft-list">
+        <li>Communication</li>
+        <li>Problem-Solving</li>
+        <li>Time Management</li>
+        <li>Teamwork</li>
+        <li>Adaptability</li>
+        <li>Attention to Detail</li>
+        <li>Critical Thinking</li>
+        <li>Creativity</li>
+      </ul>
+    </section>
+
+  </aside>
+
+  <!-- ══════════════ MAIN ══════════════ -->
+  <main class="main">
+
+    <!-- Summary -->
+    <section class="cv-section summary">
+      <div class="cv-section-header">
+        <h2>Profile</h2>
+        <div class="header-rule"></div>
+      </div>
+      <p>
+        Motivated Junior Frontend Developer and Computer Engineering undergraduate
+        with hands-on experience in HTML, CSS, JavaScript, and React. Passionate
+        about crafting clean, accessible, and visually engaging web interfaces.
+        Currently pursuing a B.Sc. at Bayero University Kano while building
+        practical experience in IT support and UI design.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section class="cv-section">
+      <div class="cv-section-header">
+        <h2>Experience</h2>
+        <div class="header-rule"></div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-role">IT Support Technician</span>
+          <span class="entry-date">2026 — Present</span>
+        </div>
+        <p class="entry-org">Achepap Center of Excellence · Kano, Nigeria</p>
+        <ul class="entry-list">
+          <li>Provide first-line technical support to staff and users, resolving hardware and software issues efficiently.</li>
+          <li>Maintain and update computer systems to ensure optimal performance and security.</li>
+          <li>Assist in the installation and configuration of software across organizational devices.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="cv-section">
+      <div class="cv-section-header">
+        <h2>Education</h2>
+        <div class="header-rule"></div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-role">
+            B.Sc. Computer Engineering
+            <span class="badge">CGPA 3.5 / 4.0</span>
+          </span>
+          <span class="entry-date">2022 — 2027</span>
+        </div>
+        <p class="entry-org">Bayero University Kano · Kano, Nigeria</p>
+        <p class="entry-desc">
+          Pursuing a rigorous Computer Engineering curriculum with a focus on
+          software systems, digital design, and networked computing. Committed
+          to bridging academic theory with applied frontend development
+          throughout the programme.
+        </p>
+      </div>
+    </section>
+
+    <!-- Online -->
+    <section class="cv-section">
+      <div class="cv-section-header">
+        <h2>Online Presence</h2>
+        <div class="header-rule"></div>
+      </div>
+
+      <div class="link-item">
+        <span class="link-label">GitHub</span>
+        <a href="https://github.com/Moashralphy" target="_blank" rel="noopener">
+          github.com/Moashralphy
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+</article>
+
 </body>
 </html>
